@@ -9,6 +9,7 @@ int main()
 	root = trie_insert(root, "kit", "3000");
 	root = trie_insert(root, "lev", "500");
 	root = trie_insert(root, "bars", "70");
+	root = trie_insert(root, "barsik", "70");
 
 	trie_print(root, 0);
 	printf("Lookup 'bars': %s\n", trie_lookup(root, "bars"));

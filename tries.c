@@ -1,6 +1,7 @@
 #include "tries.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 trie *trie_create()
 {
@@ -41,7 +42,7 @@ char *trie_lookup(trie *root, char *key)
 trie *trie_insert(trie *root, char *key, char *value)
 {
 	trie *node;
-	trie *parent= NULL;
+	trie *parent = NULL;
 	trie *list = root;
 
 	for (; *key != '\0'; key++) {
@@ -54,7 +55,7 @@ trie *trie_insert(trie *root, char *key, char *value)
 			node = trie_create();
 			node->ch = *key;
 			node->sibling = list;
-			if (!parent) {
+			if (parent != NULL) {
 				parent->child = node;
 			} else {
 				root = node;
@@ -66,10 +67,11 @@ trie *trie_insert(trie *root, char *key, char *value)
 		parent = node;
 	}
 
-	if (node->value != NULL) {
-		free(node->value);
-	}
-	node->value = value;
+	//if (node->value != NULL) {
+	//	free(node->value);
+	//}
+	//node->value = value;
+	node->value = strdup(value);
 
 	return root;
 }
